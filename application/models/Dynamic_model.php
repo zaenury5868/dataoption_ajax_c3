@@ -12,5 +12,13 @@ class Dynamic_model extends CI_Model
 	{
 		return $this->db->get_where('wilayah_kabupaten', ['provinsi_id' => $idprov])->result();
 	}
+	public function getDataKecamatan($idkabupaten)
+	{
+		return $this->db->get_where('wilayah_kecamatan', ['kabupaten_id' => $idkabupaten])->result();
+	}
+	public function getDataDesa($idkecamatan)
+	{
+		return $this->db->get_where('wilayah_desa', ['kecamatan_id' => $idkecamatan])->result();
+	}
 
 }

@@ -44,7 +44,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="desa">desa</label>
+                                <label for="desa">Desa</label>
                                 <select class="form-control" id="desa" name="desa">
                                     <option value="">--Pilih Desa--</option>
                                 </select>
@@ -67,13 +67,41 @@
             var id = $(this).val();
             $.ajax({
                 type: "POST",
-                url: "<?= base_url('Select/getKabupaten') ?>",
+                url: "<?= base_url('select/getKabupaten') ?>",
                 data: {
                     id: id
                 },
                 dataType: "JSON",
                 success: function(response) {
                     $('#kabupaten').html(response);
+                }
+            });
+        });
+        $('#kabupaten').change(function() {
+            var id = $(this).val();
+            $.ajax({
+                type: "POST",
+                url: "<?= base_url('select/getKecamatan') ?>",
+                data: {
+                    id: id
+                },
+                dataType: "JSON",
+                success: function(response) {
+                    $('#kecamatan').html(response);
+                }
+            });
+        });
+        $('#kecamatan').change(function() {
+            var id = $(this).val();
+            $.ajax({
+                type: "POST",
+                url: "<?= base_url('select/getDesa') ?>",
+                data: {
+                    id: id
+                },
+                dataType: "JSON",
+                success: function(response) {
+                    $('#desa').html(response);
                 }
             });
         });
