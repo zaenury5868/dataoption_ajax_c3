@@ -44,6 +44,5 @@ class Select extends CI_Controller {
 			$output .= '<option value="' . $row->id . '">' . $row->nama . '</option>';
 		}
 		$this->output->set_content_type('application/json')->set_output(json_encode($output));
-		
 	}
 }
