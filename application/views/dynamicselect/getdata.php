@@ -19,37 +19,52 @@
             <div class="col-6">
                 <div class="card">
                     <div class="card-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="provinsi">Provinsi</label>
-                                <select class="form-control" id="provinsi" name="provinsi">
-                                    <option value="">--Pilih Provinsi--</option>
-                                    <?php foreach($provinsi as $prov) : ?>
-                                    <option value="<?= $prov['id']; ?>">
-                                        <?= $prov['nama']; ?>
-                                    </option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="kabupaten">Kabupaten</label>
-                                <select class="form-control" id="kabupaten" name="kabupaten">
-                                    <option value="">--Pilih Kabupaten--</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="kecamatan">Kecamatan</label>
-                                <select class="form-control" id="kecamatan" name="kecamatan">
-                                    <option value="">--Pilih Kecamatan--</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="desa">Desa</label>
-                                <select class="form-control" id="desa" name="desa">
-                                    <option value="">--Pilih Desa--</option>
-                                </select>
-                            </div>
-                        </form>
+                        <?= form_open(); ?>
+                        <div class="form-group">
+                            <label for="nama">Nama Lengkap</label>
+                            <input type="text" class="form-control" id="nama" name="nama"
+                                placeholder="Isikan nama lengkap">
+                            <?= form_error('nama', '<p class="text-danger">','</p>'); ?>
+                        </div>
+                        <div class="form-group">
+                            <label for="alamat">Alamat Lengkap</label>
+                            <textarea class="form-control" id="alamat" name="alamat" rows="3"
+                                placeholder="Isikan alamat lengkap"></textarea>
+                            <?= form_error('alamat', '<p class="text-danger">','</p>'); ?>
+                        </div>
+                        <div class="form-group">
+                            <label for="provinsi">Provinsi</label>
+                            <select class="form-control" id="provinsi" name="provinsi" required>
+                                <option value="">--Pilih Provinsi--</option>
+                                <?php foreach($provinsi as $prov) : ?>
+                                <option value="<?= $prov['id']; ?>">
+                                    <?= $prov['nama']; ?>
+                                </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="kabupaten">Kabupaten</label>
+                            <select class="form-control" id="kabupaten" name="kabupaten" required>
+                                <option value="">--Pilih Kabupaten--</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="kecamatan">Kecamatan</label>
+                            <select class="form-control" id="kecamatan" name="kecamatan" required>
+                                <option value="">--Pilih Kecamatan--</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="desa">Desa</label>
+                            <select class="form-control" id="desa" name="desa" required>
+                                <option value="">--Pilih Desa--</option>
+                            </select>
+                        </div>
+                        <a href="<?= base_url('select'); ?>" class="btn btn-danger mb-2">Kembali</a>
+                        <button type="submit" class="btn btn-primary mb-2">Tambah
+                            data</button>
+                        <?= form_close(); ?>
                     </div>
                 </div>
             </div>

@@ -10,8 +10,21 @@ class Select extends CI_Controller {
 	}
 	public function index()
 	{
+		$data['title'] = 'Data Pelanggan';
+		$this->load->view('dynamicselect/index', $data);
+	}
+	
+	public function add()
+	{
 		$data['provinsi'] = $this->Dynamic_model->getDataProv();
-		$this->load->view('dynamicselect/getdata', $data);
+		$this->form_validation->set_rules('nama', 'Nama Lengkap', 'trim|required');
+		$this->form_validation->set_rules('alamat', 'Alamat Lengkap', 'trim|required');
+		
+		if ($this->form_validation->run() == FALSE) {
+			$this->load->view('dynamicselect/getdata', $data);
+		} else {
+			# code...
+		}
 	}
 	public function getKabupaten()
 	{
