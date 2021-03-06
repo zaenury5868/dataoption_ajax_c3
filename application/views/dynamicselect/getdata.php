@@ -73,7 +73,7 @@
                 },
                 dataType: "JSON",
                 success: function(response) {
-                    console.log(response);
+                    $('#kabupaten').html(response);
                 }
             });
         });

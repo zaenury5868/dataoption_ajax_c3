@@ -17,6 +17,10 @@ class Select extends CI_Controller {
 	{
 		$idprov = $this->input->post('id');
 		$data = $this->Dynamic_model->getDataKabupaten($idprov);
-		$this->output->set_content_type('application/json')->set_output(json_encode($data));
+		$output = '<option value="">--Pilih Kabupaten--</option>';
+		foreach($data as $row) {
+			$output .= '<option value="' . $row->id . '">' . $row->nama . '</option>';
+		}
+		$this->output->set_content_type('application/json')->set_output(json_encode($output));
 	}
 }
