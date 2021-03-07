@@ -20,5 +20,22 @@ class Dynamic_model extends CI_Model
 	{
 		return $this->db->get_where('wilayah_desa', ['kecamatan_id' => $idkecamatan])->result();
 	}
+	public function create($input)
+	{
+		$this->db->insert('m_customer', $input);
+		return $this->db->affected_rows();
+	}
+
+	public function getDataCustomer()
+	{
+		$this->db->select('a.nama as customer,a.alamat,b.nama as provinsi,c.nama as kabupaten,d.nama as kecamatan,e.nama as desa');
+		$this->db->from('m_customer as a');
+		$this->db->join('wilayah_provinsi as b', 'a.provinsi_id=b.id');
+		$this->db->join('wilayah_kabupaten as c', 'a.kabupaten_id=c.id');
+		$this->db->join('wilayah_kecamatan as d', 'a.kecamatan_id=d.id');
+		$this->db->join('wilayah_desa as e', 'a.desa_id=e.id');
+		return $this->db->get()->result_array();
+		
+	}
 
 }

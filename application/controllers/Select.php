@@ -10,20 +10,38 @@ class Select extends CI_Controller {
 	}
 	public function index()
 	{
-		$data['title'] = 'Data Pelanggan';
+		$data['title'] = 'Data customer';
+		$data['pelanggan'] = $this->Dynamic_model->getDataCustomer();
 		$this->load->view('dynamicselect/index', $data);
 	}
 	
 	public function add()
 	{
 		$data['provinsi'] = $this->Dynamic_model->getDataProv();
+		$data['title'] = 'Tambah customer';
 		$this->form_validation->set_rules('nama', 'Nama Lengkap', 'trim|required');
 		$this->form_validation->set_rules('alamat', 'Alamat Lengkap', 'trim|required');
 		
 		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('dynamicselect/getdata', $data);
 		} else {
-			# code...
+			$input = [
+				'nama' => htmlspecialchars($this->input->post('nama'), true),
+				'alamat' => htmlspecialchars($this->input->post('alamat'), true),
+				'provinsi_id' => $this->input->post('provinsi'),
+				'kabupaten_id' => $this->input->post('kabupaten'),
+				'kecamatan_id' => $this->input->post('kecamatan'),
+				'desa_id' => $this->input->post('desa'),
+				'date_created' => time(),
+				'date_modified' => time(),
+			];
+
+			if($this->Dynamic_model->create($input) > 0){
+				$this->session->set_flashdata('status', 'Data berhasil disimpan');
+				redirect('select');
+			} else {
+				$this->session->set_flashdata('status', 'Server gangguan');
+			};
 		}
 	}
 	public function getKabupaten()

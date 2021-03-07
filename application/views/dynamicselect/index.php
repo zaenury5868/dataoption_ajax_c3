@@ -21,6 +21,8 @@
                     <div class="card-body">
                         <a href="<?= base_url('select/add'); ?>" class="btn btn-primary mb-2">Tambah
                             data</a>
+                        <?= $this->session->flashdata('status');
+						?>
                         <table class="table table-hover">
                             <thead>
                                 <tr>
@@ -30,11 +32,15 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $i = 1;
+								foreach($pelanggan as $customer) { ?>
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
+                                    <th scope="row"><?= $i; ?></th>
+                                    <td><?= $customer['nama'] ?></td>
+                                    <td><?= $customer['alamat'] . ", Desa " . $customer['desa'] . ", Kecamatan" . $customer['kecamatan'] . ", Kabupaten " . $customer['kabupaten'] . ", Provinsi " . $customer['provinsi']; ?>
+                                    </td>
                                 </tr>
+                                <?php $i++; } ?>
                             </tbody>
                         </table>
                     </div>
@@ -50,5 +56,6 @@
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
     </script>
 </body>
+
 
 </html>
